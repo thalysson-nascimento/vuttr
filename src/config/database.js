@@ -3,7 +3,7 @@ module.exports = {
     host: '192.168.99.100',
     username: 'postgres',
     password: 'docker',
-    database: 'fastfeet',
+    database: 'vuttr',
     // host: process.env.DB_HOST,
     // username: process.env.DB_USER,
     // password: process.env.DB_PASS,
