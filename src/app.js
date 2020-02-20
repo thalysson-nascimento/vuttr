@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import express from 'express';
 import routes from './routes';
 
@@ -17,6 +18,17 @@ class App {
 
     routes() {
         this.server.use(routes);
+    }
+
+    exceptionHandler() {
+        this.server.use(async (err, req, res, next) => {
+            if (process.env.NODE_ENV === 'development') {
+                // const erros = await Youch(err, req).toJSON();
+                // return res.status(500).json(erros);
+            }
+
+            return res.status(500).json({ erro: 'Internal server error' });
+        });
     }
 }
 

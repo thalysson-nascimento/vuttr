@@ -1,4 +1,4 @@
 export default {
-    secret: 'fastfeet10',
+    secret: process.env.APP_SECRET,
     expiresIn: '7d',
 };
