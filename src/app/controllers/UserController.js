@@ -19,11 +19,11 @@ class UserController {
                 .json({ error: 'Erro na validação de dados' });
         }
 
-        const userExist = await User.findOne({
+        const emailExist = await User.findOne({
             where: { email: req.body.email },
         });
 
-        if (userExist) {
+        if (emailExist) {
             return res.status(400).json({ error: 'Usuário existente' });
         }
 

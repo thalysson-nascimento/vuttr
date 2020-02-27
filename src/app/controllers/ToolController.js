@@ -45,6 +45,24 @@ class ToolController {
 
         return res.json(tool);
     }
+
+    async delete(req, res) {
+        const idTool = req.params.id;
+
+        const tool = await Tool.findByPk(idTool);
+
+        if (!tool) {
+            return req.status(404).json({ error: 'Ferramenta não encontrada' });
+        }
+
+        if (tool.user_id !== req.userId) {
+            return req.status(404).json({ error: 'Ferramenta não encontrada' });
+        }
+
+        await tool.destroy({ where: { id: idTool } });
+
+        return res.status(204);
+    }
 }
 
 export default new ToolController();

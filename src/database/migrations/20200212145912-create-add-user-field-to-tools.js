@@ -5,11 +5,11 @@ module.exports = {
             references: { model: 'users', key: 'id' },
             onUpdate: 'CASCADE',
             onDelete: 'SET NULL',
-            allowNull: true,
+            allowNull: false,
         });
     },
 
     down: queryInterface => {
-        return queryInterface.removeColumn('user_id');
+        return queryInterface.removeColumn('users', 'user_id');
     },
 };
