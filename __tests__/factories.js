@@ -29,8 +29,8 @@ factory.define('SessionErrorValidation', User, {
 factory.define('Tool', Tool, {
     title: faker.name.title(),
     link: faker.internet.url(),
-    description: faker.name.jobDescriptor(),
-    tags: 'eslint, prettier, mongo',
+    description: faker.lorem.text(),
+    tags: 'react, react native, api, node',
 });
 
 export default factory;
