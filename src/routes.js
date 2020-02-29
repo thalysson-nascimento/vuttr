@@ -25,12 +25,10 @@ routes.use(authMiddleware);
 routes.post('/tools', ToolController.store);
 routes.get('/tools', ToolController.index);
 
-<<<<<<< HEAD
 routes.get('/list-tools', ListToolController.index);
 routes.get('/list-tools-tags', ListToolTagController.index);
-=======
-router.post('/users', UserController.store);
-router.get('/users', UserController.index);
->>>>>>> feature/user
+
+routes.post('/users', UserController.store);
+routes.get('/users', UserController.index);
 
 export default routes;
