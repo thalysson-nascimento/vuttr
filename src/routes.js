@@ -1,4 +1,6 @@
 import { Router } from 'express';
+import Brute from 'express-brute';
+import BruteRedis from 'express-brute-redis';
 
 import authMiddleware from './app/middlewares/auth';
 
@@ -10,6 +12,16 @@ import ListToolTagController from './app/controllers/ListToolTagController';
 
 const routes = new Router();
 
+const bruteStore = new BruteRedis({
+    host: process.env.REDIS_HOST,
+    port: process.env.REDIS_PORT,
+});
+
+const bruteForce = new Brute(bruteStore, {
+    freeRetries: 10,
+    minWait: 60 * 1000,
+});
+
 routes.get('/', (req, res) => {
     return res.json({
         message: 'API do desafio VUTTR Bossabox.com ',
@@ -18,7 +30,7 @@ routes.get('/', (req, res) => {
 
 routes.post('/users', UserController.store);
 
-routes.post('/sessions', SessionController.store);
+routes.post('/sessions', bruteForce.prevent, SessionController.store);
 
 routes.use(authMiddleware);
 
