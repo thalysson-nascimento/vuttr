@@ -1,8 +1,6 @@
-import jwt from 'jsonwebtoken';
 import * as Yup from 'yup';
 
 import User from '../models/User';
-import authConfig from '../../config/auth';
 
 class SessionController {
     async store(req, res) {
@@ -43,9 +41,7 @@ class SessionController {
              * o segundo será uma string unica, essa senha poderá ser gerada no  md5online
              * onde a senha criptografada será fastfeet1.0
              */
-            token: jwt.sign({ id }, authConfig.secret, {
-                expiresIn: authConfig.expiresIn,
-            }),
+            token: user.generateToken(),
         });
     }
 }

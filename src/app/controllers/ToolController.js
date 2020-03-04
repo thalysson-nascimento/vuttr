@@ -20,17 +20,17 @@ class ToolController {
 
         const { title, link, description, tags } = req.body;
 
-        const arrayTags = tags.split(',').map(tag => tag.trim());
+        const tagsArray = tags.split(',').map(tag => tag.trim());
 
         await Tool.create({
             title,
             link,
             description,
-            tags: arrayTags,
+            tags: tagsArray,
             user_id: req.userId,
         });
 
-        return res.json({ title, link, description, arrayTags });
+        return res.json({ title, link, description, tagsArray });
     }
 
     async index(req, res) {
@@ -44,6 +44,24 @@ class ToolController {
         });
 
         return res.json(tool);
+    }
+
+    async delete(req, res) {
+        const idTool = req.params.id;
+
+        const tool = await Tool.findByPk(idTool);
+
+        if (!tool) {
+            return res.status(401).json({ error: 'Ferramenta não encontrada' });
+        }
+
+        if (tool.user_id !== req.userId) {
+            return res.status(401).json({ error: 'Ferramenta não encontrada' });
+        }
+
+        const deleteTool = await tool.destroy({ where: { id: idTool } });
+
+        return res.status(204).json(deleteTool);
     }
 }
 
