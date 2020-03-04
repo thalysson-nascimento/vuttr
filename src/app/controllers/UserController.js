@@ -23,13 +23,8 @@ class UserController {
             where: { email: req.body.email },
         });
 
-<<<<<<< HEAD
-        if (userExist) {
-            return res.status(401).json({ error: 'Usuário existente' });
-=======
         if (emailExist) {
             return res.status(400).json({ error: 'Usuário existente' });
->>>>>>> feature/test
         }
 
         const { id, name, email } = await User.create(req.body);

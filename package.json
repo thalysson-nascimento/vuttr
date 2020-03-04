@@ -6,15 +6,11 @@
   "license": "MIT",
   "scripts": {
     "dev": "nodemon src/server.js",
-<<<<<<< HEAD
     "build": "sucrase ./src -d ./dist --transforms imports",
     "start": "node dist/server.js",
-    "test": "jest"
-=======
     "pretest": "set NODE_ENV=test&& sequelize db:migrate",
     "test": "cls set NODE_ENV=test&& jest --runInBand --detectOpenHandles",
     "posttest": "set NODE_ENV=test&& sequelize db:migrate:undo:all"
->>>>>>> feature/test
   },
   "dependencies": {
     "@sentry/node": "5.12.2",
