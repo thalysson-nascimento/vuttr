@@ -43,6 +43,12 @@ class ToolController {
             offset: (page - 1) * 20,
         });
 
+        if (JSON.stringify(tool) === '[]') {
+            return res
+                .status(204)
+                .json({ error: 'Não há ferramentas cadastradas' });
+        }
+
         return res.json(tool);
     }
 
