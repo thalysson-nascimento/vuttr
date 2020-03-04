@@ -22,12 +22,6 @@ const bruteForce = new Brute(bruteStore, {
     minWait: 60 * 1000,
 });
 
-routes.get('/a', (req, res) => {
-    return res.json({
-        message: 'Testando a rota A ',
-    });
-});
-
 routes.get('/', (req, res) => {
     return res.json({
         message: 'API do desafio VUTTR Bossabox.com ',
