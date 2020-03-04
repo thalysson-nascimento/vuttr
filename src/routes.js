@@ -23,8 +23,13 @@ const bruteForce = new Brute(bruteStore, {
 });
 
 routes.get('/', (req, res) => {
+    if (process.env.NODE_ENV === 'development') {
+        return res.json({
+            message: 'API do desafio VUTTR Bossabox.com local',
+        });
+    }
     return res.json({
-        message: 'API do desafio VUTTR Bossabox.com ',
+        message: 'API do desafio VUTTR Bossabox.com na DigitalOcean',
     });
 });
 
