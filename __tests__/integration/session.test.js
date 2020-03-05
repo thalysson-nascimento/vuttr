@@ -6,7 +6,7 @@ import factory from '../factories';
 
 describe('Session', () => {
     beforeEach(async () => {
-        await truncate;
+        await truncate();
     });
 
     it('Deve possibilitar a autenticação do usuário', async () => {

@@ -14,7 +14,7 @@ class ToolController {
 
         if (!(await schema.isValid(req.body))) {
             return res
-                .status(400)
+                .status(401)
                 .json({ error: 'Erro na validação de dados' });
         }
 

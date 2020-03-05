@@ -32,7 +32,7 @@ class App {
         this.server.use(cors());
         this.server.use(express.json());
 
-        if (process.env.NODE_ENV !== 'developer') {
+        if (process.env.NODE_ENV !== 'development') {
             this.server.use(
                 new RateLimit({
                     store: new RateLimitRedis({
